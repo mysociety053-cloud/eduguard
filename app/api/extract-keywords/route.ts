@@ -21,10 +21,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // 검증용 엔드포인트. 위험 신호는 UI에서 받지만 이 라우트는 키워드 추출만 검증해서
+    // 기본값(위험 없음)으로 채워 호출한다.
     const result = await extractKeywords({
       actions: body.actions,
       situation: body.situation,
       grade: body.grade,
+      repeat: body.repeat ?? "일회성",
+      injury: body.injury ?? "없음",
+      victimCount: body.victimCount ?? "1명",
       narrative: body.narrative,
     });
 
