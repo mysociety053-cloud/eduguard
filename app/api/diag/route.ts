@@ -4,7 +4,7 @@ export const runtime = "nodejs";
 
 // 일시적 진단용. 원인 파악 후 제거 예정.
 export async function GET() {
-  const oc = process.env.LAW_API_OC ?? "(none)";
+  const oc = process.env.LAW_API_OC?.trim() ?? "(none)";
 
   // 1. 외부에서 본 우리 서버의 IP
   let outboundIp = "";

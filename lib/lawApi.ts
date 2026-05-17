@@ -8,7 +8,7 @@ const SEARCH_URL = "http://www.law.go.kr/DRF/lawSearch.do";
 const SERVICE_URL = "http://www.law.go.kr/DRF/lawService.do";
 
 function getOC(): string {
-  const oc = process.env.LAW_API_OC;
+  const oc = process.env.LAW_API_OC?.trim();
   if (!oc) {
     throw new Error("LAW_API_OC 환경변수가 설정되지 않았습니다");
   }

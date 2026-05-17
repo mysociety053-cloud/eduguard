@@ -4,7 +4,7 @@ let client: GoogleGenAI | null = null;
 
 export function getGenAI(): GoogleGenAI {
   if (client) return client;
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY?.trim();
   if (!apiKey) {
     throw new Error(
       "GEMINI_API_KEY 환경변수가 설정되지 않았습니다. .env.local을 확인해주세요.",
