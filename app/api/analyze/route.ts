@@ -55,6 +55,7 @@ export async function POST(req: NextRequest) {
     });
 
     // 1. 키워드 추출
+    console.log("[analyze] step1 extract-keywords");
     const kw = await extractKeywords({
       actions: body.actions,
       situation: body.situation,
@@ -66,11 +67,13 @@ export async function POST(req: NextRequest) {
     });
 
     // 2. 판례 검색 (4단계 확장 + 사건명 prefilter)
+    console.log("[analyze] step2 search-precedents", kw);
     const search = await searchPrecedentsWithFallback(
       kw.statute,
       kw.action,
       kw.context,
     );
+    console.log("[analyze] step2 done — stage", search.stage, "hits", search.hits.length);
 
     // 검색 0건
     if (search.hits.length === 0) {
@@ -93,6 +96,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 3. 본문 조회 + 분석 (병렬, 최대 7건)
+    console.log("[analyze] step3 analyze precedents, n=", Math.min(search.hits.length, MAX_PRECEDENTS));
     const targets = search.hits.slice(0, MAX_PRECEDENTS);
     const results = await Promise.all(
       targets.map(async (hit): Promise<PrecedentAnalysis | null> => {
@@ -156,6 +160,7 @@ export async function POST(req: NextRequest) {
     };
 
     // 4. 종합 분석
+    console.log("[analyze] step4 summarize, precedents=", precedents.length);
     let summary;
     if (precedents.length > 0) {
       summary = await summarizeReport({
