@@ -6,6 +6,7 @@ import type { AnalysisReport, Outcome } from "@/types/analysis";
 import { ReportLoadingView } from "@/components/ReportLoadingView";
 import { PrintButton } from "@/components/PrintButton";
 import { PrintHeader } from "@/components/PrintHeader";
+import { ChatPanel } from "@/components/ChatPanel";
 
 const outcomeLabel: Record<Outcome, string> = {
   not_guilty: "무죄",
@@ -502,6 +503,8 @@ function ReportView({ report }: { report: AnalysisReport }) {
             </li>
           </ul>
         </section>
+
+        <ChatPanel report={report} />
 
         <div className="flex justify-center pt-4 print:hidden">
           <Link
