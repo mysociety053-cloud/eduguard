@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm *)",
+      "Bash(git *)",
+      "Bash(npx create-next-app@latest *)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code} | total %{time_total}s\\\\n\" http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code} | time %{time_total}s\\\\n\" http://localhost:3000/)",
+      "Bash(echo \"curl failed: $?\")",
+      "PowerShell(Start-Process \"http://localhost:3000\")",
+      "Bash(curl -s -o /dev/null -w \"/ → HTTP %{http_code} | %{time_total}s\\\\n\" http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"/analyze → HTTP %{http_code} | %{time_total}s\\\\n\" http://localhost:3000/analyze)",
+      "Bash(curl -s -o /dev/null -w \"/report/test → HTTP %{http_code} | %{time_total}s\\\\n\" http://localhost:3000/report/test-session)",
+      "Bash(curl -s -o /dev/null -w \"/report/test-print → HTTP %{http_code}\\\\n\" http://localhost:3000/report/test-print-session)",
+      "Bash(curl *)",
+      "Bash(node *)",
+      "Bash(grep -E \"POST /api/analyze|analyze precedent|\\\\\\\\[search-precedents|\\\\\\\\[extract|\\\\\\\\[analyze|Compiled|Error|Warning|TypeError|FATAL\")",
+      "PowerShell(Get-NetTCPConnection *)"
+    ]
+  }
+}

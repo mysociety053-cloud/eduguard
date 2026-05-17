@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont,
+    system-ui, "Segoe UI", "Helvetica Neue", "Apple SD Gothic Neo", "Noto Sans KR",
+    sans-serif;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+@media print {
+  @page {
+    margin: 1.5cm;
+  }
+
+  body {
+    background: white !important;
+    color: black;
+  }
+
+  /* 판례 카드·통계·요인 박스가 페이지 사이에서 잘리지 않게 */
+  li,
+  section,
+  .avoid-break {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
